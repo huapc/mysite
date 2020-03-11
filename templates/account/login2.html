@@ -5,10 +5,11 @@
     <div class="row text-center vertical-middle-sm">
         <h1>Login</h1>
         <p>输入你的账号和密码</p>
-        {% if form.errors %}
-            <p>账号和密码不匹配</p>
-        {% endif %}
+        {% if next %}
+            <form class="form-horizontal" action="{% url 'account:user_login' %}?nest={{ next }}" method="post">
+        {% else %}
         <form class="form-horizontal" action="{% url 'account:user_login' %}" method="post">
+            {% endif %}
             {% csrf_token %}
             <div class="form-group">
                 <label for="{{ form.username.id_for_label }}" class="col-md-5 control-label" style="color: red">
